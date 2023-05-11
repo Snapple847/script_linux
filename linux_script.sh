@@ -23,7 +23,7 @@ if [ "$changeHostname" = "Y" ] || [ "$changeHostname" = "y" ]; then
 	hostnamectl set-hostname $newHostname
 	sed -i "s/$oldHostname/$newHostname/g" /etc/hosts
 	echo Hostname changed to $(hostname)
-	echo Cotinue with software installation process in 5 seconds...
+	echo Continue with new user process in 5 seconds...
 	sleep 5
 	clear
 	sleep 3
@@ -54,20 +54,30 @@ if [ "$addUser" = "Y" ] || [ "$addUser" = "y" ]; then
 # add user to group sudo
         usermod -aG sudo $userName
 		echo $userName added to group sudo!
+		echo -e "\n"
 		groups %userName
+		echo -e "\n"
 		echo continue with software installation in 5 seconds...
 		sleep 5
+		clear
 else
         echo NO user created -- continue with new software in 5 seconds...
         sleep 5
+	clear
 fi
 ###########################################
 # installing new software
 ###########################################
-echo installing new software...
+echo update repository...
 sleep 2
+apt update
+echo -e "\n"
+echo repository is up2date!
+echo -e "\n"
+echo installing new software...
+sleep 3
 while read -r p ; do sudo apt-get install -y $p ; done < <(cat << "EOF"
-	ssh
+	openssh-client
 	xfce4
 	htop
 	ufw
@@ -82,6 +92,7 @@ EOF
 echo new software installed!!!
 echo -e "\n"
 echo CrowdSec installer in 5 seconds...
+clear
 echo hit Crtl+C to quit CrowdSec installation
 sleep 5
 ###########################################
@@ -97,7 +108,14 @@ sudo apt-get  -y install crowdsec
 sudo apt  install  -y crowdsec-firewall-bouncer-iptables
 sudo cscli  console enroll $key
 echo instance added to CrowdSec! -- please check: https://www.crowdsec.net
-echo "\n"
-echo script finished
+echo -e "\n"
+echo script finished!
+echo -e "\n"
+date
+echo -- RESULTS --
+hostname
+cat /etc/passwd | grep $userName
+groups $userName
+cat /etc/hots
 exit
 ###########################################
