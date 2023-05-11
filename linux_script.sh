@@ -1,8 +1,8 @@
 #!/bin/bash
-# 10.05.2023 FS: Automated Script for installing packages for a new linux system
-# 10.05.2023 FS: added CrowdSec installation with curl and adding Instance to CrowdSec with API Key (individual key)
-# 10.05.2023 FS: added Hostname-Configuration
-# 11.05.2023 FS: added function for new user with group sudo
+# 10.05.2023: Automated Script for installing packages for a new linux system
+# 10.05.2023: added CrowdSec installation with curl and adding Instance to CrowdSec with API Key (individual key)
+# 10.05.2023: added Hostname-Configuration
+# 11.05.2023: added function for new user with group sudo
 ############################################
 # modify shell operation environment (terminate whenever an error occurs)
 set -eu -o pipefail # fail on error and report it, debug all lines
