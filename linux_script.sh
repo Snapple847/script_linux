@@ -55,8 +55,6 @@ if [ "$addUser" = "Y" ] || [ "$addUser" = "y" ]; then
         usermod -aG sudo $userName
 		echo $userName added to group sudo!
 		echo -e "\n"
-		groups %userName
-		echo -e "\n"
 		echo continue with software installation in 5 seconds...
 		sleep 5
 		clear
@@ -115,7 +113,7 @@ date
 echo -- RESULTS --
 hostname
 cat /etc/passwd | grep $userName
-groups $userName
+groups (%userName)
 cat /etc/hots
 exit
 ###########################################
