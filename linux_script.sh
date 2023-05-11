@@ -26,7 +26,6 @@ if [ "$changeHostname" = "Y" ] || [ "$changeHostname" = "y" ]; then
 	echo Continue with new user process in 5 seconds...
 	sleep 5
 	clear
-	sleep 3
 else
 	echo Hostname - $(hostname) - will not change! continue with new software in 5 seconds...
 	sleep 5
@@ -112,8 +111,8 @@ echo -e "\n"
 date
 echo -- RESULTS --
 hostname
-cat /etc/passwd | grep $userName
-groups (%userName)
+cat /etc/passwd | grep $(userName)
+groups $(userName)
 cat /etc/hots
 exit
 ###########################################
